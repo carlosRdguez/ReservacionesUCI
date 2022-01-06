@@ -1,0 +1,13 @@
+# FECHA DEL VIAJE, NOMBRE DEL CHOFER
+SELECT viaje.fecha, chofer.nombre from viaje, chofer WHERE chofer.ci=viaje.ci
+# FECHA DEL VIAJE, CANTIDAD DE RESERVACIONES REALIZADAS EN ESA FECHA
+SELECT viajero.fecha, COUNT(*) from viajero GROUP BY fecha
+# fecha, capacidades disponibles en el viaje, dinero recaudado 
+select viajero.fecha, 48-count(*), sum(destino.tarifa) from viajero, destino where viajero.nombreDestino=destino.nombre group by viajero.fecha
+# fecha del viaje, nombre del chofer, capacidades disponibles del viaje, dinero recaudado en el viaje
+select viajero.fecha, chofer.nombre, 48-count(*), sum(destino.tarifa) from viajero, destino, viaje, chofer where viajero.nombreDestino=destino.nombre and viajero.fecha=viaje.fecha and viaje.ci=chofer.ci group by viajero.fecha
+
+
+# fecha del viaje, destinos,  tarifa
+# para usarlo para calcular el detino de ese viaje con mayor tarifa via codigo php
+select viajero.fecha, destino.nombre as nom, destino.tarifa from viajero,destino where viajero.nombreDestino=destino.nombre
