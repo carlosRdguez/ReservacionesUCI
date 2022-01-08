@@ -29,7 +29,9 @@ if(isset($_GET['accion'])) {
             if($rowCi[0] != '') {
                 $consultaChoferAsignado = mysqli_query($con, "select nombre from chofer where ci='".$rowCi[0]."'");
                 $rowNombre = mysqli_fetch_array($consultaChoferAsignado);
-                $nombreChofer = $rowNombre[0];
+                if(isset($rowNombre[0])) {
+                    $nombreChofer = $rowNombre[0];
+                }
             }
             // retornar resultado de fila
             echo "<tr fila=\"".$row[0]."\">";
